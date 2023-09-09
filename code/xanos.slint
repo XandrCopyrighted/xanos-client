@@ -1,0 +1,19 @@
+import { CheckBox, StandardListView, StyleMetrics } from "std-widgets.slint";
+import { WelcomePage, HomePage } from "ui/pages/pages.slint";
+import { SideBar } from "ui/side_bar.slint";
+
+component App inherits Window {
+    width: 1280px;
+    height: 720px;
+    title: @tr("Xanos Client");
+    icon: @image-url("logo.png");
+
+    HorizontalLayout {
+        side-bar := SideBar {
+            model: [@tr("Menu" => "Welcome"), @tr("Menu" => "Home")];
+        }
+
+        if(side-bar.current-item == 0) : WelcomePage {}
+        if(side-bar.current-item == 1) : HomePage {}
+    }
+}

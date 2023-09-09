@@ -1,0 +1,59 @@
+import { Button, GroupBox, HorizontalBox, ComboBox, LineEdit, ProgressIndicator , GridBox} from "std-widgets.slint";
+
+component Photo {
+    in property <image>  img;
+    padding: 10px;
+        Rectangle {
+            border-width: 1px;
+            border-color: black;
+            border-radius: 1px;
+            Image {
+                source: img;
+    }
+}
+}
+
+export component HomePage inherits Window {
+
+    Photo {
+        img: @image-url("../../panorama.jpg");
+        x: 60px;
+    }
+
+    GridBox {
+        Text {text: "Installation Configuration";}
+        x: 60px;
+    }
+
+    Button {
+        text: @tr("Install Minecraft");
+        primary: true;
+        icon: @image-url("../../Minecraft.png");
+        x: 67px;
+        y: 30px;
+        width: 140px;
+        clicked => { self.text = "Installing..."; }
+   }
+
+   ComboBox {
+    model: [@tr("Fabric"), @tr("Forge"), @tr("Vanilla")];
+    x: 215px;
+    y: 30px;
+    width: 85px;
+    height: 35px;
+}
+
+   GridBox {
+    Text {text: "Configuration";}
+    x: 60px;
+    y: 70px;
+   }
+
+   LineEdit {
+    placeholder-text: @tr("RAM (GB)");
+    x: 67px;
+    y: 100px;
+    width: 85px;
+    height: 35px;
+    }
+}
